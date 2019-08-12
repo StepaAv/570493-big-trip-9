@@ -1,5 +1,5 @@
-export const createBlockTripEventsContent = () => {
-  return `
+export const createBlockTripEventsContent = () =>
+  `
             <ul class="trip-days">
             <li class="trip-days__item  day">
               <div class="day__info">
@@ -331,4 +331,4 @@ export const createBlockTripEventsContent = () => {
               </ul>
             </li>
           </ul>`;
-};
+

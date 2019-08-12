@@ -1,5 +1,5 @@
-export const createBlockTripFilters = () => {
-  return `
+export const createBlockTripFilters = () =>
+  `
   <form class="trip-filters" action="#" method="get">
               <div class="trip-filters__filter">
                 <input id="filters-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked>
@@ -18,4 +18,4 @@ export const createBlockTripFilters = () => {
 
               <button class="visually-hidden" type="submit">Accept filter</button>
             </form>`;
-};
+

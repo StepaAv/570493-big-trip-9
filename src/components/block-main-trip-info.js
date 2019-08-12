@@ -1,5 +1,5 @@
-export const createBlockMainTripInfo = () => {
-  return `
+export const createBlockMainTripInfo = () =>
+  `
   <div class="trip-info__main">
               <h1 class="trip-info__title">Amsterdam &mdash; ... &mdash; Amsterdam</h1>
 
@@ -9,4 +9,4 @@ export const createBlockMainTripInfo = () => {
              <p class="trip-info__cost">
               Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
             </p> `;
-};
+
