@@ -1,4 +1,6 @@
-const createMokData = () => ({
+import {addFirstTripEvent} from './block-add-trip-event.js';
+
+export const createAllMokData = () => ({
 description: [
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     `Cras aliquet varius magna, non porta ligula feugiat eget.`,
@@ -13,49 +15,59 @@ description: [
     `In rutrum ac purus sit amet tempus.`,
   ][Math.floor(Math.random() * 11)],
 
-  routeType: new Set ([
+  routeType: [
   	`Bus`,
   	`Drive`,
   	`Flight`,
   	`Ship`,
   	`Taxi`,
   	`Train`,
-  	`Transport`
-  	]),
+  	`Transport`,
+  	][Math.floor(Math.random() * 7)],
 
-  cityType: new Set ([
+  cityType: [
   	`Vilnius`,
   	`Kaunas`,
   	`Klaipeda`,
   	`Palanaga`,
   	`Nida`,
   	`Utena`
-  	][Math.floor(Math.random() * 6)]),
-})
+  	][Math.floor(Math.random() * 6)],
 
-const additionalOffers = [{
-	name: `luggage`,
-	desc: `Add luggage`,
-	price: 10,
-	check: Boolean(Math.round(Math.random()))
+  dateStart: Date.now() + 1 + Math.floor(Math.random() * 1) * 24 * 60 * 60 * 1000,
+  dateFinish: Date.now() + 1 + Math.floor(Math.random() * 3) * 24 * 60 * 60 * 1000,
+
+  additionalOffers: [{
+  name: `luggage`,
+  desc: `Add luggage`,
+  price: 10,
+  check: Boolean(Math.round(Math.random()))
 },
 {
-	name: `comfort`,
-	desc: `Switch to comfort class`,
-	price: 150,
-	check: Boolean(Math.round(Math.random()))
+  name: `comfort`,
+  desc: `Switch to comfort class`,
+  price: 150,
+  check: Boolean(Math.round(Math.random()))
 },
 {
-	name: `meal`,
-	desc: `Add meal`,
-	price: 2,
-	check: Boolean(Math.round(Math.random()))
+  name: `meal`,
+  desc: `Add meal`,
+  price: 2,
+  check: Boolean(Math.round(Math.random()))
 },
 {
-	name: `seats`,
-	desc: `Choose seats`,
-	price: 9,
-	check: Boolean(Math.round(Math.random()))
-},
-];
+  name: `seats`,
+  desc: `Choose seats`,
+  price: 9,
+  check: Boolean(Math.round(Math.random()))
+}],
+});
+
+
+export const generateEveryMokData = () => {
+  const routeData = Array(1).fill().map(createAllMokData);
+  return routeData;
+}
+const oneTripEvent = generateEveryMokData();
+export const blabla = addFirstTripEvent(createAllMokData());
 

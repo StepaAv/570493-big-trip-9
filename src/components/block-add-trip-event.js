@@ -1,4 +1,4 @@
-export const addFirstTripEvent = () => {
+export const addFirstTripEvent = ({cityType, dateStart, dateFinish}) => {
   return `<header class="event__header">
               <div class="event__type-wrapper">
                 <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -32,7 +32,7 @@ export const addFirstTripEvent = () => {
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport">
+                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" checked>
                       <label class="event__type-label  event__type-label--transport" for="event-type-transport-1">Transport</label>
                     </div>
 
@@ -42,7 +42,7 @@ export const addFirstTripEvent = () => {
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" checked>
+                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight">
                       <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">Flight</label>
                     </div>
                   </fieldset>
@@ -72,7 +72,7 @@ export const addFirstTripEvent = () => {
                 <label class="event__label  event__type-output" for="event-destination-1">
                   Sightseeing at
                 </label>
-                <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="" list="destination-list-1">
+                <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${cityType}" list="destination-list-1">
                 <datalist id="destination-list-1">
                   <option value="Amsterdam"></option>
                   <option value="Geneva"></option>
@@ -85,12 +85,12 @@ export const addFirstTripEvent = () => {
                 <label class="visually-hidden" for="event-start-time-1">
                   From
                 </label>
-                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="18/03/19 00:00">
+                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(dateStart).toDateString()}">
                 &mdash;
                 <label class="visually-hidden" for="event-end-time-1">
                   To
                 </label>
-                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="18/03/19 00:00">
+                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(dateFinish).toDateString()}">
               </div>
 
               <div class="event__field-group  event__field-group--price">
