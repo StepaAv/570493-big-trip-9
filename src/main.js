@@ -4,6 +4,7 @@ import {createBlockTripFilters} from './components/block-trip-filters.js';
 import {createTripEventsForm} from './components/block-trip-events-form.js';
 import {createAllMokData} from './components/data.js';
 import {addFirstTripEvent} from './components/block-add-trip-event.js';
+import {createBlockTripEventsSort} from './components/block-trip-events-sort';
 
 
 
@@ -11,6 +12,8 @@ const mainBlockMainTrip = document.querySelector(`.trip-main__trip-info`);
 const mainBlockTripControlTabs = document.querySelector(`.trip-main__trip-controls > h2:first-child`);
 const mainBlockTripControlFilters = document.querySelector(`.trip-main__trip-controls > h2:last-child`);
 const mainBlockTripEventsForm = document.querySelector(`.trip-events`);
+const mainBlockInsertTripEventsSort = document.querySelector(`.trip-events > h2`);
+const mainEventAddBtn = document.querySelector('.trip-main__event-add-btn');
 
 
 const renderBlocks = (container, template, place) => {
@@ -30,11 +33,11 @@ const generateEveryMokData = (quantity = 1) => {
 };
 
 
-const blabla = generateEveryMokData();
-const onebla =blabla[0];
-const myMokData = addFirstTripEvent(onebla);
+const dataArray = generateEveryMokData();
+const eventHeader = dataArray[0];
+const myMokData = addFirstTripEvent(eventHeader);
 
-console.log(onebla);
+console.log(eventHeader);
 
 const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
 renderBlocks(mainBlockOneTripEvent, myMokData, `beforeend`);
@@ -66,10 +69,27 @@ if (labelTaxi.checked) {
 }
 
 const saveBtn = document.querySelector('.event__save-btn');
+const eventHeaderBlock = document.querySelector('.event__header');
+const eventsArray = [];
+
+const pushDataToEventsArray = () => {
+	eventsArray.push(eventHeader);
+}
 
 const saveEvent = () => {
   console.log('btn is working');
-  // console.log(myMokData);
+  //otpravliajem dannyje v massiv
+  pushDataToEventsArray();
+  console.log(eventsArray);
+  //priachem eventHeader
+  eventHeaderBlock.style.display = 'none';
+  //pokazyvajem EventSort blok
+  renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
 };
 
 saveBtn.addEventListener('click', saveEvent);
+
+const addNewHeaderEvent = () => {
+	eventHeaderBlock.style.display = 'block';
+};
+mainEventAddBtn.addEventListener('click', addNewHeaderEvent);
