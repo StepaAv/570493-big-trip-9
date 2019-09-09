@@ -2,7 +2,8 @@ import {createBlockMainTripInfo} from './components/block-main-trip-info.js';
 import {createBlockTripControlTabs} from './components/block-trip-control-tabs.js';
 import {createBlockTripFilters} from './components/block-trip-filters.js';
 import {createTripEventsForm} from './components/block-trip-events-form.js';
-import {blabla} from './components/data.js';
+import {createAllMokData} from './components/data.js';
+import {addFirstTripEvent} from './components/block-add-trip-event.js';
 
 
 
@@ -21,8 +22,22 @@ renderBlocks(mainBlockTripControlTabs, createBlockTripControlTabs(), `afterend`)
 renderBlocks(mainBlockTripControlFilters, createBlockTripFilters(), `afterend`);
 renderBlocks(mainBlockTripEventsForm, createTripEventsForm(), `beforeend`);
 
+
+
+const generateEveryMokData = (quantity = 1) => {
+  const routeData = Array(quantity).fill().map(createAllMokData);
+  return routeData;
+};
+
+
+const blabla = generateEveryMokData();
+const onebla =blabla[0];
+const myMokData = addFirstTripEvent(onebla);
+
+console.log(onebla);
+
 const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
-renderBlocks(mainBlockOneTripEvent, blabla, `beforeend`);
+renderBlocks(mainBlockOneTripEvent, myMokData, `beforeend`);
 
 const labelTaxi = document.getElementById('event-type-taxi-1');
 const labelBus = document.getElementById('event-type-bus-1');
@@ -32,9 +47,7 @@ const labelTransport = document.getElementById('event-type-transport-1');
 const labelDrive = document.getElementById('event-type-drive-1');
 const labelFlight = document.getElementById('event-type-flight-1');
 
-
 const eventTypeIcon = document.querySelector('.event__type-icon');
-
 
 if (labelTaxi.checked) {
   eventTypeIcon.src = 'img/icons/taxi.png'
@@ -52,4 +65,11 @@ if (labelTaxi.checked) {
   eventTypeIcon.src = 'img/icons/flight.png'
 }
 
+const saveBtn = document.querySelector('.event__save-btn');
 
+const saveEvent = () => {
+  console.log('btn is working');
+  // console.log(myMokData);
+};
+
+saveBtn.addEventListener('click', saveEvent);

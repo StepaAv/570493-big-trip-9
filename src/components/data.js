@@ -1,4 +1,3 @@
-import {addFirstTripEvent} from './block-add-trip-event.js';
 
 export const createAllMokData = () => ({
 description: [
@@ -34,8 +33,8 @@ description: [
   	`Utena`
   	][Math.floor(Math.random() * 6)],
 
-  dateStart: Date.now() + 1 + Math.floor(Math.random() * 1) * 24 * 60 * 60 * 1000,
-  dateFinish: Date.now() + 1 + Math.floor(Math.random() * 3) * 24 * 60 * 60 * 1000,
+  dateStart: Date.now() + 1 + Math.floor(Math.random() * 2) * 24 * 60 * 60 * 1000,
+  dateFinish: Date.now() + 1 + Math.floor(Math.random() * 5) * 24 * 60 * 60 * 1000,
 
   additionalOffers: [{
   name: `luggage`,
@@ -64,10 +63,10 @@ description: [
 });
 
 
-export const generateEveryMokData = () => {
-  const routeData = Array(1).fill().map(createAllMokData);
-  return routeData;
-}
-const oneTripEvent = generateEveryMokData();
-export const blabla = addFirstTripEvent(createAllMokData());
+// export const generateEveryMokData = () => {
+//   const routeData = Array(1).fill().map(createAllMokData);
+//   return routeData;
+// }
+// // const oneTripEvent = generateEveryMokData();
+// export const myMokData = addFirstTripEvent(createAllMokData());
 
