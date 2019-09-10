@@ -4,9 +4,9 @@ import {createBlockTripFilters} from './components/block-trip-filters.js';
 import {createTripEventsForm} from './components/block-trip-events-form.js';
 import {createAllMokData} from './components/data.js';
 import {addFirstTripEvent} from './components/block-add-trip-event.js';
-import {createBlockTripEventsSort} from './components/block-trip-events-sort';
-
-
+import {createBlockTripEventsSort} from './components/block-trip-events-sort.js';
+import {createBlockTripDays} from './components/block-trip-days.js';
+import {createBlockTripDay} from './components/block-trip-day.js';
 
 const mainBlockMainTrip = document.querySelector(`.trip-main__trip-info`);
 const mainBlockTripControlTabs = document.querySelector(`.trip-main__trip-controls > h2:first-child`);
@@ -70,26 +70,36 @@ if (labelTaxi.checked) {
 
 const saveBtn = document.querySelector('.event__save-btn');
 const eventHeaderBlock = document.querySelector('.event__header');
+const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
+
 const eventsArray = [];
 
 const pushDataToEventsArray = () => {
 	eventsArray.push(eventHeader);
 }
 
+const renderTripDayBlock = () => {
+  const mainBlockInsertTripDay = document.querySelector('.trip-events__list');
+  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(eventsArray[0]), `beforeend`);
+}
+
 const saveEvent = () => {
-  console.log('btn is working');
   //otpravliajem dannyje v massiv
   pushDataToEventsArray();
-  console.log(eventsArray);
-  //priachem eventHeader
-  eventHeaderBlock.style.display = 'none';
+  //ubirajem eventHeader
+  eventHeaderBlock.remove();
   //pokazyvajem EventSort blok
   renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
+  // sozdajem kontainer mainBlockInsertTripDays
+  renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
+  // renderim odnu kartochku event
+  renderTripDayBlock();
+  console.log(eventsArray[0]);
 };
 
 saveBtn.addEventListener('click', saveEvent);
 
-const addNewHeaderEvent = () => {
-	eventHeaderBlock.style.display = 'block';
-};
-mainEventAddBtn.addEventListener('click', addNewHeaderEvent);
+
+
+
+

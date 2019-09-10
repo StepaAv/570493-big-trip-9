@@ -70,7 +70,7 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
 
               <div class="event__field-group  event__field-group--destination">
                 <label class="event__label  event__type-output" for="event-destination-1">
-                  Sightseeing at
+                  ${routeType} to
                 </label>
                 <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${cityType}" list="destination-list-1">
                 <datalist id="destination-list-1">
@@ -85,12 +85,12 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
                 <label class="visually-hidden" for="event-start-time-1">
                   From
                 </label>
-                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(dateStart).toDateString()}">
+                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(dateStart).toLocaleDateString()}">
                 &mdash;
                 <label class="visually-hidden" for="event-end-time-1">
                   To
                 </label>
-                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(dateFinish).toDateString()}">
+                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(dateFinish).toLocaleDateString()}">
               </div>
 
               <div class="event__field-group  event__field-group--price">
