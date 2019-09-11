@@ -8,9 +8,9 @@ import {createBlockTripEventsSort} from './components/block-trip-events-sort.js'
 import {createBlockTripDays} from './components/block-trip-days.js';
 import {createBlockTripDay} from './components/block-trip-day.js';
 // my eshe vernemsia
-import {createEditTripEvent} from './components/block-edit-trip-event.js';
+// import {createEditTripEvent} from './components/block-edit-trip-event.js';
 //testing
-import {createAddNewEvent} from './components/block-add-new-event.js';
+// import {createAddNewEvent} from './components/block-add-new-event.js';
 
 
 const mainBlockMainTrip = document.querySelector(`.trip-main__trip-info`);
@@ -38,9 +38,9 @@ const generateEveryMokData = (quantity = 1) => {
 };
 
 
-let dataArray = generateEveryMokData();
-let eventHeader = dataArray[0];
-let myMokData = addFirstTripEvent(eventHeader);
+let temporallyDataArray = generateEveryMokData();
+let eventHeaderData = temporallyDataArray[0];
+let myMokData = addFirstTripEvent(eventHeaderData);
 
 const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
 renderBlocks(mainBlockOneTripEvent, myMokData, `beforeend`);
@@ -75,21 +75,21 @@ const saveBtn = document.querySelector('.event__save-btn');
 const eventHeaderBlock = document.querySelector('.event__header');
 const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
 
-const eventsArray = [];
+const allEventsArray = [];
 
 const pushDataToEventsArray = () => {
-	eventsArray.push(eventHeader);
+	allEventsArray.push(eventHeaderData);
 }
 
 const renderTripDayBlock = () => {
   const mainBlockInsertTripDay = document.querySelector('.trip-events__list');
-  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(eventsArray[0]), `beforeend`);
+  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[0]), `beforeend`);
 }
 
 const saveEvent = () => {
   //otpravliajem dannyje v massiv
   pushDataToEventsArray();
-  //ubirajem eventHeader
+  //ubirajem eventHeaderData
   eventHeaderBlock.remove();
   //pokazyvajem EventSort blok
   renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
@@ -104,13 +104,13 @@ saveBtn.addEventListener('click', saveEvent);
 const newEventBtn = document.querySelector('.trip-main__event-add-btn');
 
 const addNewEvent = () => {
-  dataArray = generateEveryMokData();
-  eventHeader = dataArray[0];
-  myMokData = addFirstTripEvent(eventHeader);
-  console.log(myMokData);
+  temporallyDataArray = generateEveryMokData();
+  console.log(temporallyDataArray);
+  console.log(allEventsArray);
+  allEventsArray.push(temporallyDataArray);
+  console.log(allEventsArray);
   const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
-  console.log('it works');
-  renderBlocks(mainBlockInsertNewEvent, createAddNewEvent(), `afterbegin`);
+  // renderBlocks(mainBlockInsertNewEvent, createAddNewEvent(), `afterbegin`);
 };
 
 newEventBtn.addEventListener('click', addNewEvent);
