@@ -1,4 +1,4 @@
-export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) => {
+export const createAddNewEvent = ({cityType}) => {
   return `<header class="event__header">
               <div class="event__type-wrapper">
                 <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -12,37 +12,37 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
                     <legend class="visually-hidden">Transfer</legend>
 
                     <div class="event__type-item">
-                      <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi" ${(routeType == 'Taxi') ? 'checked' : ''}>
+                      <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi">
                       <label class="event__type-label  event__type-label--taxi" for="event-type-taxi-1">Taxi</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus"  >
+                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus">
                       <label class="event__type-label  event__type-label--bus" for="event-type-bus-1">Bus</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train" ${(routeType == 'Train') ? 'checked' : ''}>
+                      <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train">
                       <label class="event__type-label  event__type-label--train" for="event-type-train-1">Train</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship" ${(routeType == 'Ship') ? 'checked' : ''}>
+                      <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship">
                       <label class="event__type-label  event__type-label--ship" for="event-type-ship-1">Ship</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" ${(routeType == 'Transport') ? 'checked' : ''}>
+                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport">
                       <label class="event__type-label  event__type-label--transport" for="event-type-transport-1">Transport</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive" ${(routeType == 'Drive') ? 'checked' : ''}>
+                      <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive">
                       <label class="event__type-label  event__type-label--drive" for="event-type-drive-1">Drive</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" ${(routeType == 'Flight') ? 'checked' : ''}>
+                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" checked="">
                       <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">Flight</label>
                     </div>
                   </fieldset>
@@ -70,9 +70,9 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
 
               <div class="event__field-group  event__field-group--destination">
                 <label class="event__label  event__type-output" for="event-destination-1">
-                  ${routeType} to
+                  Sightseeing at ${cityType}
                 </label>
-                <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${cityType}" list="destination-list-1">
+                <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="" list="destination-list-1">
                 <datalist id="destination-list-1">
                   <option value="Amsterdam"></option>
                   <option value="Geneva"></option>
@@ -85,23 +85,23 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
                 <label class="visually-hidden" for="event-start-time-1">
                   From
                 </label>
-                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(dateStart).toLocaleDateString()}">
-                &mdash;
+                <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="18/03/19 00:00">
+                —
                 <label class="visually-hidden" for="event-end-time-1">
                   To
                 </label>
-                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(dateFinish).toLocaleDateString()}">
+                <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="18/03/19 00:00">
               </div>
 
               <div class="event__field-group  event__field-group--price">
                 <label class="event__label" for="event-price-1">
                   <span class="visually-hidden">Price</span>
-                  &euro;
+                  €
                 </label>
                 <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
               </div>
 
               <button class="event__save-btn  btn  btn--blue" type="button">Save</button>
               <button class="event__reset-btn" type="reset">Cancel</button>
-            </header>`;
-};
+            </header>`
+}

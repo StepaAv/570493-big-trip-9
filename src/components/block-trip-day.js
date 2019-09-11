@@ -2,7 +2,7 @@ export const createBlockTripDay = ({cityType, routeType, dateStart, dateFinish})
   return `<li class="trip-events__item">
                   <div class="event">
                     <div class="event__type">
-                      <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
+                      <img class="event__type-icon" width="42" height="42" src="img/icons/${(routeType == 'Bus') ? 'bus' : (routeType == 'Train') ? 'train' : (routeType == 'Taxi') ? 'Taxi' : (routeType == 'Ship') ? 'ship' : (routeType == 'Transport') ? 'transport' : (routeType == 'Drive') ? 'drive' : (routeType == 'Flight') ? 'flight' : ''}.png" alt="Event type icon">
                     </div>
                     <h3 class="event__title">${routeType} to ${cityType}</h3>
 

@@ -7,6 +7,11 @@ import {addFirstTripEvent} from './components/block-add-trip-event.js';
 import {createBlockTripEventsSort} from './components/block-trip-events-sort.js';
 import {createBlockTripDays} from './components/block-trip-days.js';
 import {createBlockTripDay} from './components/block-trip-day.js';
+// my eshe vernemsia
+import {createEditTripEvent} from './components/block-edit-trip-event.js';
+//testing
+import {createAddNewEvent} from './components/block-add-new-event.js';
+
 
 const mainBlockMainTrip = document.querySelector(`.trip-main__trip-info`);
 const mainBlockTripControlTabs = document.querySelector(`.trip-main__trip-controls > h2:first-child`);
@@ -33,11 +38,9 @@ const generateEveryMokData = (quantity = 1) => {
 };
 
 
-const dataArray = generateEveryMokData();
-const eventHeader = dataArray[0];
-const myMokData = addFirstTripEvent(eventHeader);
-
-console.log(eventHeader);
+let dataArray = generateEveryMokData();
+let eventHeader = dataArray[0];
+let myMokData = addFirstTripEvent(eventHeader);
 
 const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
 renderBlocks(mainBlockOneTripEvent, myMokData, `beforeend`);
@@ -94,12 +97,21 @@ const saveEvent = () => {
   renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
   // renderim odnu kartochku event
   renderTripDayBlock();
-  console.log(eventsArray[0]);
 };
 
 saveBtn.addEventListener('click', saveEvent);
 
+const newEventBtn = document.querySelector('.trip-main__event-add-btn');
 
+const addNewEvent = () => {
+  dataArray = generateEveryMokData();
+  eventHeader = dataArray[0];
+  myMokData = addFirstTripEvent(eventHeader);
+  console.log(myMokData);
+  const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
+  console.log('it works');
+  renderBlocks(mainBlockInsertNewEvent, createAddNewEvent(), `afterbegin`);
+};
 
-
+newEventBtn.addEventListener('click', addNewEvent);
 
