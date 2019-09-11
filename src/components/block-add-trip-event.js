@@ -17,7 +17,7 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus"  >
+                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus" ${(routeType == 'Bus') ? 'checked' : ''} >
                       <label class="event__type-label  event__type-label--bus" for="event-type-bus-1">Bus</label>
                     </div>
 

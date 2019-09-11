@@ -75,15 +75,15 @@ const saveBtn = document.querySelector('.event__save-btn');
 const eventHeaderBlock = document.querySelector('.event__header');
 const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
 
-const allEventsArray = [];
+let allEventsArray = [];
 
 const pushDataToEventsArray = () => {
 	allEventsArray.push(eventHeaderData);
 }
 
-const renderTripDayBlock = () => {
+const renderTripDayBlock = (count = 0) => {
   const mainBlockInsertTripDay = document.querySelector('.trip-events__list');
-  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[0]), `beforeend`);
+  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[count]), `beforeend`);
 }
 
 const saveEvent = () => {
@@ -103,15 +103,15 @@ saveBtn.addEventListener('click', saveEvent);
 
 const newEventBtn = document.querySelector('.trip-main__event-add-btn');
 
+let count = 0;
 const addNewEvent = () => {
+  count += 1;
   temporallyDataArray = generateEveryMokData();
-  console.log(temporallyDataArray);
-  console.log(allEventsArray);
-  allEventsArray.push(temporallyDataArray);
-  console.log(allEventsArray);
+  allEventsArray.push(temporallyDataArray[0]);
   const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
-  // renderBlocks(mainBlockInsertNewEvent, createAddNewEvent(), `afterbegin`);
+  renderTripDayBlock(count);
 };
 
 newEventBtn.addEventListener('click', addNewEvent);
+
 
