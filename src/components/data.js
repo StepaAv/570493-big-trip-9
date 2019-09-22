@@ -1,6 +1,14 @@
 
+
 export const createAllMokData = () => ({
-description: [
+get description() {
+  const maxRandom = 3;
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+const descArr = [
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     `Cras aliquet varius magna, non porta ligula feugiat eget.`,
     `Fusce tristique felis at fermentum pharetra.`,
@@ -12,7 +20,11 @@ description: [
     `Aliquam erat volutpat.`,
     `Nunc fermentum tortor ac porta dapibus.`,
     `In rutrum ac purus sit amet tempus.`,
-  ][Math.floor(Math.random() * 11)],
+  ]
+const descArrShuffle = descArr.sort(() => 0.5 - Math.random());
+let descSelected = descArrShuffle.slice(0, getRandomInt(maxRandom));
+  return descSelected;
+},
 
   routeType: [
   	`Bus`,
@@ -35,6 +47,10 @@ description: [
 
   dateStart: Date.now() + 1 + Math.floor(Math.random() * 2) * 24 * 60 * 60 * 1000,
   dateFinish: Date.now() + 1 + Math.floor(Math.random() * 5) * 24 * 60 * 60 * 1000,
+
+  get photos() {
+  return `http://picsum.photos/300/150?r=`
+  } ,
 
   additionalOffers: [{
   name: `luggage`,

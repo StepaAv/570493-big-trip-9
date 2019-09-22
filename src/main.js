@@ -7,10 +7,8 @@ import {addFirstTripEvent} from './components/block-add-trip-event.js';
 import {createBlockTripEventsSort} from './components/block-trip-events-sort.js';
 import {createBlockTripDays} from './components/block-trip-days.js';
 import {createBlockTripDay} from './components/block-trip-day.js';
-// my eshe vernemsia
-// import {createEditTripEvent} from './components/block-edit-trip-event.js';
-//testing
-// import {createAddNewEvent} from './components/block-add-new-event.js';
+import {createEditTripEvent} from './components/block-edit-trip-event.js';
+
 
 
 const mainBlockMainTrip = document.querySelector(`.trip-main__trip-info`);
@@ -36,82 +34,213 @@ const generateEveryMokData = (quantity = 1) => {
   const routeData = Array(quantity).fill().map(createAllMokData);
   return routeData;
 };
+console.log(createAllMokData);
 
 
-let temporallyDataArray = generateEveryMokData();
-let eventHeaderData = temporallyDataArray[0];
-let myMokData = addFirstTripEvent(eventHeaderData);
-
-const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
-renderBlocks(mainBlockOneTripEvent, myMokData, `beforeend`);
-
-const labelTaxi = document.getElementById('event-type-taxi-1');
-const labelBus = document.getElementById('event-type-bus-1');
-const labelTrain = document.getElementById('event-type-train-1');
-const labelShip = document.getElementById('event-type-ship-1');
-const labelTransport = document.getElementById('event-type-transport-1');
-const labelDrive = document.getElementById('event-type-drive-1');
-const labelFlight = document.getElementById('event-type-flight-1');
-
-const eventTypeIcon = document.querySelector('.event__type-icon');
-
-if (labelTaxi.checked) {
-  eventTypeIcon.src = 'img/icons/taxi.png'
-} else if (labelBus.checked) {
-  eventTypeIcon.src = 'img/icons/bus.png'
-} else if (labelTrain.checked) {
-  eventTypeIcon.src = 'img/icons/train.png'
-} else if (labelShip.checked) {
-  eventTypeIcon.src = 'img/icons/ship.png'
-} else if (labelTransport.checked) {
-  eventTypeIcon.src = 'img/icons/transport.png'
-} else if (labelDrive.checked) {
-  eventTypeIcon.src = 'img/icons/drive.png'
-} else if (labelFlight.checked) {
-  eventTypeIcon.src = 'img/icons/flight.png'
-}
-
-const saveBtn = document.querySelector('.event__save-btn');
-const eventHeaderBlock = document.querySelector('.event__header');
-const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
-
+let temporallyDataArray;
+let eventHeaderData;
+let eventNumber = 0;
 let allEventsArray = [];
 
-const pushDataToEventsArray = () => {
-	allEventsArray.push(eventHeaderData);
-}
 
-const renderTripDayBlock = (count = 0) => {
+
+const renderFirstEvent = () => {
+	const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
+	temporallyDataArray = generateEveryMokData();
+	eventHeaderData = temporallyDataArray[0];
+	document.onload = renderBlocks(mainBlockOneTripEvent, addFirstTripEvent(eventHeaderData), `beforeend`);
+	document.onload = mainEventAddBtn.disabled = true;
+};
+renderFirstEvent();
+
+
+const saveBtn = document.querySelector('.event__save-btn');
+const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
+
+
+const pushDataToEventsArrayOnce = () => {
+	//sohraniajem pervyj event, s uslovijem jesli masiv pustoj, jesli net, to sohraniat budet funkcija newEvent
+	if (allEventsArray && allEventsArray.length) {
+		console.log('array is not empty') 
+	} else {
+		allEventsArray.push(eventHeaderData);
+	}
+	
+};
+
+const renderTripDayBlock = (eventNumber = 0) => {
   const mainBlockInsertTripDay = document.querySelector('.trip-events__list');
-  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[count]), `beforeend`);
+  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[eventNumber]), `beforeend`);
+};
+
+const renderNewEvent = (eventNumber) => {
+	const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
+	renderBlocks(mainBlockOneTripEvent, addFirstTripEvent(allEventsArray[eventNumber]), `beforeend`);
 }
 
-const saveEvent = () => {
-  //otpravliajem dannyje v massiv
-  pushDataToEventsArray();
-  //ubirajem eventHeaderData
-  eventHeaderBlock.remove();
-  //pokazyvajem EventSort blok
-  renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
-  // sozdajem kontainer mainBlockInsertTripDays
-  renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
-  // renderim odnu kartochku event
-  renderTripDayBlock();
-};
+const renderDaysSortBlocks = () => {
+	renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
+	renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
+}
+const ifContainsSortBlock = () => {
+	const eventSortBlock = document.querySelector('.trip-events__trip-sort');
+	if (document.contains(eventSortBlock)) {
+	} else {
+	renderDaysSortBlocks();
+	}
+}
 
-saveBtn.addEventListener('click', saveEvent);
+const removingEventHeader = () => {
+	const eventHeaderBlock = document.querySelector('.event__header');
+	eventHeaderBlock.remove();
+}
 
-const newEventBtn = document.querySelector('.trip-main__event-add-btn');
+const newEventBtnDisable = () => {
+		mainEventAddBtn.disabled = true;
 
-let count = 0;
-const addNewEvent = () => {
-  count += 1;
-  temporallyDataArray = generateEveryMokData();
-  allEventsArray.push(temporallyDataArray[0]);
-  const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
-  renderTripDayBlock(count);
-};
+}
+const newEventBtnEnable = () => {
+		mainEventAddBtn.disabled = false;
 
-newEventBtn.addEventListener('click', addNewEvent);
+}
+
+const makingSaveEvent = () => {
+	pushDataToEventsArrayOnce();
+	removingEventHeader();
+	ifContainsSortBlock();
+	renderTripDayBlock(eventNumber);
+	newEventBtnEnable();
+	console.log(allEventsArray);
+}
+saveBtn.addEventListener('click', makingSaveEvent);
+
+const makingNewEvent = () => {
+	// schetchik po kliku, ukazyvajet na element v masive s mokami
+	eventNumber += 1;
+	// dizablim knopku new event
+	newEventBtnDisable();
+ 	 // sohraniajem mok danyje vo vremenyj massiv
+  	temporallyDataArray = generateEveryMokData();
+  	// sohraniajem danyje kazhdoj kartochki v masiv
+  	allEventsArray.push(temporallyDataArray[0]);
+  	console.log(allEventsArray);
+  	// renderim novyh event header s mokami iz allEventsArray
+  	renderNewEvent(eventNumber);
+  	const saveAnyEvent = document.querySelector('.event__save-btn').onclick = makingSaveEvent;
+}
+mainEventAddBtn.addEventListener('click', makingNewEvent);
+
+
+
+
+
+// const labelTaxi = document.getElementById('event-type-taxi-1');
+// const labelBus = document.getElementById('event-type-bus-1');
+// const labelTrain = document.getElementById('event-type-train-1');
+// const labelShip = document.getElementById('event-type-ship-1');
+// const labelTransport = document.getElementById('event-type-transport-1');
+// const labelDrive = document.getElementById('event-type-drive-1');
+// const labelFlight = document.getElementById('event-type-flight-1');
+
+// const eventTypeIcon = document.querySelector('.event__type-icon');
+
+// if (labelTaxi.checked) {
+//   eventTypeIcon.src = 'img/icons/taxi.png'
+// } else if (labelBus.checked) {
+//   eventTypeIcon.src = 'img/icons/bus.png'
+// } else if (labelTrain.checked) {
+//   eventTypeIcon.src = 'img/icons/train.png'
+// } else if (labelShip.checked) {
+//   eventTypeIcon.src = 'img/icons/ship.png'
+// } else if (labelTransport.checked) {
+//   eventTypeIcon.src = 'img/icons/transport.png'
+// } else if (labelDrive.checked) {
+//   eventTypeIcon.src = 'img/icons/drive.png'
+// } else if (labelFlight.checked) {
+//   eventTypeIcon.src = 'img/icons/flight.png'
+// }
+
+
+
+
+
+
+
+
+
+
+// let tripEventsList;
+// let oneEventContainer;
+// let arrowDown;
+// let oneEvent;
+// let arrowArray = [];
+
+
+
+
+
+// const saveEvent = () => {
+//   //otpravliajem dannyje v massiv
+//   pushDataToEventsArray();
+//   //ubirajem eventHeaderData
+//   eventHeaderBlock.remove();
+//   //pokazyvajem EventSort blok
+//   renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
+//   // sozdajem kontainer mainBlockInsertTripDays
+//   renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
+//   // renderim odnu kartochku event
+//   renderTripDayBlock();
+//   oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
+//   oneEvent = [...document.querySelectorAll('.event')];
+//   arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
+
+
+//   const getArrowNum = (e) => {
+//   	counter = arrowDown.indexOf(e.target);
+// }
+//   arrowDown.forEach(cell => cell.addEventListener('click', getArrowNum));
+// };
+
+// saveBtn.addEventListener('click', saveEvent);
+
+
+
+
+
+
+// const newEventBtn = document.querySelector('.trip-main__event-add-btn');
+
+// let counter = 0;
+// let count = 0;
+// // funkcija u kotoroj mnogo raboty
+// const addNewEvent = () => {
+// 	//schetchik
+//   count += 1;
+//   // sohraniajem mok danyje vo vremenyj massiv
+//   temporallyDataArray = generateEveryMokData();
+//   // sohraniajem danyje kazhdoj kartochki v masiv
+//   allEventsArray.push(temporallyDataArray[0]);
+//   const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
+//   // renderim kartochku
+//   renderTripDayBlock(count);
+//   // sohraniajem tolko chto otrenderenyje elementy
+//   oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
+//   arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
+//   oneEvent = [...document.querySelectorAll('.event')];
+//   // eshe odna funkcija u kotoroj mnogo raboty
+//   const getArrowNum = (e) => {
+//   	counter = arrowDown.indexOf(e.target);
+//   	console.log(counter);
+//   		oneEvent[counter+1].style.display = 'none';
+//   		renderBlocks(oneEventContainer[counter+1], createEditTripEvent(allEventsArray[counter]), `beforeend`);
+// }
+
+
+
+//   arrowDown.forEach(cell => cell.addEventListener('click', getArrowNum));
+
+// };
+// newEventBtn.addEventListener('click', addNewEvent);
+
 
 
