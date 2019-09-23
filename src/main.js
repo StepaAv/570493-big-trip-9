@@ -34,7 +34,7 @@ const generateEveryMokData = (quantity = 1) => {
   const routeData = Array(quantity).fill().map(createAllMokData);
   return routeData;
 };
-console.log(createAllMokData);
+
 
 
 let temporallyDataArray;
@@ -70,12 +70,12 @@ const pushDataToEventsArrayOnce = () => {
 
 const renderTripDayBlock = (eventNumber = 0) => {
   const mainBlockInsertTripDay = document.querySelector('.trip-events__list');
-  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[eventNumber]), `beforeend`);
+  renderBlocks(mainBlockInsertTripDay,createBlockTripDay(allEventsArray[eventNumber]), `afterbegin`);
 };
 
 const renderNewEvent = (eventNumber) => {
 	const mainBlockOneTripEvent = document.querySelector(`.trip-events__item`);
-	renderBlocks(mainBlockOneTripEvent, addFirstTripEvent(allEventsArray[eventNumber]), `beforeend`);
+	renderBlocks(mainBlockOneTripEvent, addFirstTripEvent(allEventsArray[eventNumber]), `afterbegin`);
 }
 
 const renderDaysSortBlocks = () => {
@@ -103,6 +103,14 @@ const newEventBtnEnable = () => {
 		mainEventAddBtn.disabled = false;
 
 }
+let oneEventContainer;
+let arrowDown;
+let oneEvent; 
+const savingEventsToArr = () => {
+	oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
+  	arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
+  	oneEvent = [...document.querySelectorAll('.event')];
+}
 
 const makingSaveEvent = () => {
 	pushDataToEventsArrayOnce();
@@ -111,6 +119,8 @@ const makingSaveEvent = () => {
 	renderTripDayBlock(eventNumber);
 	newEventBtnEnable();
 	console.log(allEventsArray);
+	savingEventsToArr();
+  	console.log(oneEventContainer);
 }
 saveBtn.addEventListener('click', makingSaveEvent);
 
@@ -134,46 +144,11 @@ mainEventAddBtn.addEventListener('click', makingNewEvent);
 
 
 
-// const labelTaxi = document.getElementById('event-type-taxi-1');
-// const labelBus = document.getElementById('event-type-bus-1');
-// const labelTrain = document.getElementById('event-type-train-1');
-// const labelShip = document.getElementById('event-type-ship-1');
-// const labelTransport = document.getElementById('event-type-transport-1');
-// const labelDrive = document.getElementById('event-type-drive-1');
-// const labelFlight = document.getElementById('event-type-flight-1');
-
-// const eventTypeIcon = document.querySelector('.event__type-icon');
-
-// if (labelTaxi.checked) {
-//   eventTypeIcon.src = 'img/icons/taxi.png'
-// } else if (labelBus.checked) {
-//   eventTypeIcon.src = 'img/icons/bus.png'
-// } else if (labelTrain.checked) {
-//   eventTypeIcon.src = 'img/icons/train.png'
-// } else if (labelShip.checked) {
-//   eventTypeIcon.src = 'img/icons/ship.png'
-// } else if (labelTransport.checked) {
-//   eventTypeIcon.src = 'img/icons/transport.png'
-// } else if (labelDrive.checked) {
-//   eventTypeIcon.src = 'img/icons/drive.png'
-// } else if (labelFlight.checked) {
-//   eventTypeIcon.src = 'img/icons/flight.png'
-// }
 
 
 
 
 
-
-
-
-
-
-// let tripEventsList;
-// let oneEventContainer;
-// let arrowDown;
-// let oneEvent;
-// let arrowArray = [];
 
 
 
