@@ -108,20 +108,27 @@ let arrowDown;
 let oneEvent;
 const savingEventsToArr = () => {
 	oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
+	oneEventContainer.shift();
+	// poluchaju masiv knopok so strelkoj vniz
   	arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
-    console.log(arrowDown);
+  	console.log(arrowDown);
   	oneEvent = [...document.querySelectorAll('.event')];
+  	oneEvent.shift();
 }
 
-// let counter = 1;
-
-let arrowDownIndex = () => {
-  const getArrowIndex = (e) => {
-  arrowDown.indexOf(e.target);
-  console.log(arrowDown.indexOf(e.target));
-    return  arrowDown
+let renderBlockMore = () => {
+  const renderSettingBlock = (e) => {
+  let counter = arrowDown.indexOf(e.target);
+  console.log(counter);
+  oneEvent[counter].style.display = 'none';
+  const reversedEventsArr = [...allEventsArray];
+  reversedEventsArr.reverse();
+  console.log(reversedEventsArr);
+  renderBlocks(oneEventContainer[counter], createEditTripEvent(reversedEventsArr[counter]), `afterbegin`);
+  // let abcd = document.querySelectorAll('.event__header > .event__rollup-btn').onclick = console.log('hi');
 }
-  arrowDown.forEach(cell => cell.addEventListener('click', getArrowIndex));
+  arrowDown.every(cell => cell.addEventListener('click', renderSettingBlock));
+
 }
 
 
@@ -133,12 +140,10 @@ const makingSaveEvent = () => {
 	renderTripDayBlock(eventNumber);
 	newEventBtnEnable();
 	savingEventsToArr();
-  console.log(oneEventContainer);
-  arrowDownIndex();
-
+  	console.log(oneEventContainer);
+  	renderBlockMore();
 
 }
-
 
 
 saveBtn.addEventListener('click', makingSaveEvent);
@@ -157,83 +162,4 @@ const makingNewEvent = () => {
   	const saveAnyEvent = document.querySelector('.event__save-btn').onclick = makingSaveEvent;
 }
 mainEventAddBtn.addEventListener('click', makingNewEvent);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const saveEvent = () => {
-//   //otpravliajem dannyje v massiv
-//   pushDataToEventsArray();
-//   //ubirajem eventHeaderData
-//   eventHeaderBlock.remove();
-//   //pokazyvajem EventSort blok
-//   renderBlocks(mainBlockInsertTripEventsSort, createBlockTripEventsSort(), `afterend`);
-//   // sozdajem kontainer mainBlockInsertTripDays
-//   renderBlocks(mainBlockInsertTripDays, createBlockTripDays(), `afterend`);
-//   // renderim odnu kartochku event
-//   renderTripDayBlock();
-//   oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
-//   oneEvent = [...document.querySelectorAll('.event')];
-//   arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
-
-
-//   const getArrowNum = (e) => {
-//   	counter = arrowDown.indexOf(e.target);
-// }
-//   arrowDown.forEach(cell => cell.addEventListener('click', getArrowNum));
-// };
-
-// saveBtn.addEventListener('click', saveEvent);
-
-
-
-
-
-
-// const newEventBtn = document.querySelector('.trip-main__event-add-btn');
-
-// let counter = 0;
-// let count = 0;
-// // funkcija u kotoroj mnogo raboty
-// const addNewEvent = () => {
-// 	//schetchik
-//   count += 1;
-//   // sohraniajem mok danyje vo vremenyj massiv
-//   temporallyDataArray = generateEveryMokData();
-//   // sohraniajem danyje kazhdoj kartochki v masiv
-//   allEventsArray.push(temporallyDataArray[0]);
-//   const mainBlockInsertNewEvent = document.querySelector('.trip-events__item');
-//   // renderim kartochku
-//   renderTripDayBlock(count);
-//   // sohraniajem tolko chto otrenderenyje elementy
-//   oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
-//   arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
-//   oneEvent = [...document.querySelectorAll('.event')];
-//   // eshe odna funkcija u kotoroj mnogo raboty
-//   const getArrowNum = (e) => {
-//   	counter = arrowDown.indexOf(e.target);
-//   	console.log(counter);
-//   		oneEvent[counter+1].style.display = 'none';
-//   		renderBlocks(oneEventContainer[counter+1], createEditTripEvent(allEventsArray[counter]), `beforeend`);
-// }
-
-
-
-//   arrowDown.forEach(cell => cell.addEventListener('click', getArrowNum));
-
-// };
-// newEventBtn.addEventListener('click', addNewEvent);
-
-
 
