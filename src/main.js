@@ -61,11 +61,11 @@ const mainBlockInsertTripDays = document.querySelector('.trip-events__item');
 const pushDataToEventsArrayOnce = () => {
 	//sohraniajem pervyj event, s uslovijem jesli masiv pustoj, jesli net, to sohraniat budet funkcija newEvent
 	if (allEventsArray && allEventsArray.length) {
-		console.log('array is not empty') 
+		console.log('array is not empty')
 	} else {
 		allEventsArray.push(eventHeaderData);
 	}
-	
+
 };
 
 const renderTripDayBlock = (eventNumber = 0) => {
@@ -105,12 +105,26 @@ const newEventBtnEnable = () => {
 }
 let oneEventContainer;
 let arrowDown;
-let oneEvent; 
+let oneEvent;
 const savingEventsToArr = () => {
 	oneEventContainer = [...document.querySelectorAll('.trip-events__item')];
   	arrowDown = [...document.querySelectorAll('.event__rollup-btn')];
+    console.log(arrowDown);
   	oneEvent = [...document.querySelectorAll('.event')];
 }
+
+// let counter = 1;
+
+let arrowDownIndex = () => {
+  const getArrowIndex = (e) => {
+  arrowDown.indexOf(e.target);
+  console.log(arrowDown.indexOf(e.target));
+    return  arrowDown
+}
+  arrowDown.forEach(cell => cell.addEventListener('click', getArrowIndex));
+}
+
+
 
 const makingSaveEvent = () => {
 	pushDataToEventsArrayOnce();
@@ -118,10 +132,15 @@ const makingSaveEvent = () => {
 	ifContainsSortBlock();
 	renderTripDayBlock(eventNumber);
 	newEventBtnEnable();
-	console.log(allEventsArray);
 	savingEventsToArr();
-  	console.log(oneEventContainer);
+  console.log(oneEventContainer);
+  arrowDownIndex();
+
+
 }
+
+
+
 saveBtn.addEventListener('click', makingSaveEvent);
 
 const makingNewEvent = () => {
@@ -133,7 +152,6 @@ const makingNewEvent = () => {
   	temporallyDataArray = generateEveryMokData();
   	// sohraniajem danyje kazhdoj kartochki v masiv
   	allEventsArray.push(temporallyDataArray[0]);
-  	console.log(allEventsArray);
   	// renderim novyh event header s mokami iz allEventsArray
   	renderNewEvent(eventNumber);
   	const saveAnyEvent = document.querySelector('.event__save-btn').onclick = makingSaveEvent;
