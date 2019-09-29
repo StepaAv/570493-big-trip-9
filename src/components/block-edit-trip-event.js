@@ -1,16 +1,16 @@
 export const createEditTripEvent = ({cityType, dateStart, dateFinish, routeType, additionalOffers, description, photos}) => {
-const MAX_NUM = 123;
-    
-    const getRandomInt = (max) => {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+  const MAX_NUM = 123;
+
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
 
   return `<form class="event  event--edit" action="#" method="post">
                     <header class="event__header">
                       <div class="event__type-wrapper">
                         <label class="event__type  event__type-btn" for="event-type-toggle-1">
                           <span class="visually-hidden">Choose event type</span>
-                          <img class="event__type-icon" width="17" height="17" src="img/icons/${(routeType == 'Taxi') ? 'taxi' : (routeType == 'Bus') ? 'bus' : (routeType == 'Train') ? 'train' : (routeType == 'Ship') ? 'ship' : (routeType == 'Transport') ? 'transport' : (routeType == 'Drive') ? 'drive' : (routeType == 'Flight') ? 'flight' : ''}.png" alt="Event type icon">
+                          <img class="event__type-icon" width="17" height="17" src="img/icons/${(routeType == `Taxi`) ? `taxi` : (routeType == `Bus`) ? `bus` : (routeType == `Train`) ? `train` : (routeType == `Ship`) ? `ship` : (routeType == `Transport`) ? `transport` : (routeType == `Drive`) ? `drive` : (routeType == `Flight`) ? `flight` : ``}.png" alt="Event type icon">
                         </label>
                         <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
@@ -19,37 +19,37 @@ const MAX_NUM = 123;
                             <legend class="visually-hidden">Transfer</legend>
 
                             <div class="event__type-item">
-                              <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi" ${(routeType == 'Taxi') ? 'checked' : ''}>
+                              <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi" ${(routeType == `Taxi`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--taxi" for="event-type-taxi-1">Taxi</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus" ${(routeType == 'Bus') ? 'checked' : ''}>
+                              <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus" ${(routeType == `Bus`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--bus" for="event-type-bus-1">Bus</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train" ${(routeType == 'Train') ? 'checked' : ''}>
+                              <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train" ${(routeType == `Train`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--train" for="event-type-train-1">Train</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship" ${(routeType == 'Ship') ? 'checked' : ''}>
+                              <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship" ${(routeType == `Ship`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--ship" for="event-type-ship-1">Ship</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" ${(routeType == 'Transport') ? 'checked' : ''}>
+                              <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" ${(routeType == `Transport`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--transport" for="event-type-transport-1">Transport</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive" ${(routeType == 'Drive') ? 'checked' : ''}>
+                              <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive" ${(routeType == `Drive`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--drive" for="event-type-drive-1">Drive</label>
                             </div>
 
                             <div class="event__type-item">
-                              <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" ${(routeType == 'Flight') ? 'checked' : ''}>
+                              <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" ${(routeType == `Flight`) ? `checked` : ``}>
                               <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">Flight</label>
                             </div>
                           </fieldset>
@@ -130,7 +130,7 @@ const MAX_NUM = 123;
 
                         <div class="event__available-offers">
                           <div class="event__offer-selector">
-                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${(additionalOffers[0].check === true) ? 'checked' : ''}>
+                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" ${(additionalOffers[0].check === true) ? `checked` : ``}>
                             <label class="event__offer-label" for="event-offer-luggage-1">
                               <span class="event__offer-title">${additionalOffers[0].desc}</span>
                               +
@@ -139,7 +139,7 @@ const MAX_NUM = 123;
                           </div>
 
                           <div class="event__offer-selector">
-                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-1" type="checkbox" name="event-offer-comfort" ${(additionalOffers[1].check === true) ? 'checked' : ''}>
+                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-comfort-1" type="checkbox" name="event-offer-comfort" ${(additionalOffers[1].check === true) ? `checked` : ``}>
                             <label class="event__offer-label" for="event-offer-comfort-1">
                               <span class="event__offer-title">${additionalOffers[1].desc}</span>
                               +
@@ -148,7 +148,7 @@ const MAX_NUM = 123;
                           </div>
 
                           <div class="event__offer-selector">
-                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-1" type="checkbox" name="event-offer-meal" ${(additionalOffers[2].check === true) ? 'checked' : ''}>
+                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-meal-1" type="checkbox" name="event-offer-meal" ${(additionalOffers[2].check === true) ? `checked` : ``}>
                             <label class="event__offer-label" for="event-offer-meal-1">
                               <span class="event__offer-title">${additionalOffers[2].desc}</span>
                               +
@@ -157,7 +157,7 @@ const MAX_NUM = 123;
                           </div>
 
                           <div class="event__offer-selector">
-                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-seats-1" type="checkbox" name="event-offer-seats" ${(additionalOffers[3].check === true) ? 'checked' : ''}>
+                            <input class="event__offer-checkbox  visually-hidden" id="event-offer-seats-1" type="checkbox" name="event-offer-seats" ${(additionalOffers[3].check === true) ? `checked` : ``}>
                             <label class="event__offer-label" for="event-offer-seats-1">
                               <span class="event__offer-title">${additionalOffers[3].desc}</span>
                               +
@@ -191,5 +191,5 @@ const MAX_NUM = 123;
                         </div>
                       </section>
                     </section>
-                  </form>`
-}
+                  </form>`;
+};

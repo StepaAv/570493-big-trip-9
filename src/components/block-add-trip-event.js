@@ -3,7 +3,7 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
               <div class="event__type-wrapper">
                 <label class="event__type  event__type-btn" for="event-type-toggle-1">
                   <span class="visually-hidden">Choose event type</span>
-                  <img class="event__type-icon" width="17" height="17" src="img/icons/${(routeType == 'Taxi') ? 'taxi' : (routeType == 'Bus') ? 'bus' : (routeType == 'Train') ? 'train' : (routeType == 'Ship') ? 'ship' : (routeType == 'Transport') ? 'transport' : (routeType == 'Drive') ? 'drive' : (routeType == 'Flight') ? 'flight' : ''}.png" alt="Event type icon">
+                  <img class="event__type-icon" width="17" height="17" src="img/icons/${(routeType == `Taxi`) ? `taxi` : (routeType == `Bus`) ? `bus` : (routeType == `Train`) ? `train` : (routeType == `Ship`) ? `ship` : (routeType == `Transport`) ? `transport` : (routeType == `Drive`) ? `drive` : (routeType == `Flight`) ? `flight` : ``}.png" alt="Event type icon">
                 </label>
                 <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
@@ -12,37 +12,37 @@ export const addFirstTripEvent = ({cityType, dateStart, dateFinish, routeType}) 
                     <legend class="visually-hidden">Transfer</legend>
 
                     <div class="event__type-item">
-                      <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi" ${(routeType == 'Taxi') ? 'checked' : ''}>
+                      <input id="event-type-taxi-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="taxi" ${(routeType == `Taxi`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--taxi" for="event-type-taxi-1">Taxi</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus" ${(routeType == 'Bus') ? 'checked' : ''} >
+                      <input id="event-type-bus-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="bus" ${(routeType == `Bus`) ? `checked` : ``} >
                       <label class="event__type-label  event__type-label--bus" for="event-type-bus-1">Bus</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train" ${(routeType == 'Train') ? 'checked' : ''}>
+                      <input id="event-type-train-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="train" ${(routeType == `Train`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--train" for="event-type-train-1">Train</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship" ${(routeType == 'Ship') ? 'checked' : ''}>
+                      <input id="event-type-ship-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="ship" ${(routeType == `Ship`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--ship" for="event-type-ship-1">Ship</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" ${(routeType == 'Transport') ? 'checked' : ''}>
+                      <input id="event-type-transport-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="transport" ${(routeType == `Transport`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--transport" for="event-type-transport-1">Transport</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive" ${(routeType == 'Drive') ? 'checked' : ''}>
+                      <input id="event-type-drive-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="drive" ${(routeType == `Drive`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--drive" for="event-type-drive-1">Drive</label>
                     </div>
 
                     <div class="event__type-item">
-                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" ${(routeType == 'Flight') ? 'checked' : ''}>
+                      <input id="event-type-flight-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="flight" ${(routeType == `Flight`) ? `checked` : ``}>
                       <label class="event__type-label  event__type-label--flight" for="event-type-flight-1">Flight</label>
                     </div>
                   </fieldset>

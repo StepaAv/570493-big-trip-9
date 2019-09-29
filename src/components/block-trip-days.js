@@ -8,5 +8,5 @@ export const createBlockTripDays = () => {
               <ul class="trip-events__list">
               </ul>
             </li>
-          </ul>`
-}
+          </ul>`;
+};
