@@ -1,4 +1,4 @@
-
+let today = new Date();
 
 export const createAllMokData = () => ({
   get description() {
@@ -7,6 +7,7 @@ export const createAllMokData = () => ({
     const getRandomInt = (max) => {
       return Math.floor(Math.random() * Math.floor(max));
     };
+
 
     const descArr = [
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
@@ -27,50 +28,52 @@ export const createAllMokData = () => ({
   },
 
   routeType: [
-  	`Bus`,
-  	`Drive`,
-  	`Flight`,
-  	`Ship`,
-  	`Taxi`,
-  	`Train`,
-  	`Transport`,
-  	][Math.floor(Math.random() * 7)],
+    `Bus`,
+    `Drive`,
+    `Flight`,
+    `Ship`,
+    `Taxi`,
+    `Train`,
+    `Transport`,
+  ][Math.floor(Math.random() * 7)],
 
   cityType: [
-  	`Vilnius`,
-  	`Kaunas`,
-  	`Klaipeda`,
-  	`Palanaga`,
-  	`Nida`,
-  	`Utena`
-  	][Math.floor(Math.random() * 6)],
+    `Vilnius`,
+    `Kaunas`,
+    `Klaipeda`,
+    `Palanaga`,
+    `Nida`,
+    `Utena`
+  ][Math.floor(Math.random() * 6)],
 
-  dateStart: Date.now() + 1 + Math.floor(Math.random() * 2) * 24 * 60 * 60 * 1000,
-  dateFinish: Date.now() + 1 + Math.floor(Math.random() * 5) * 24 * 60 * 60 * 1000,
+  timeStart: today.getHours() + `:` + today.getMinutes(),
+
+  timeEnd: today.getHours() + Math.floor(Math.random() * 10) + `:` + (today.getMinutes() + Math.floor(Math.random() * 30)),
 
   get photos() {
     return `http://picsum.photos/300/150?r=`;
   },
+
+
+  price: Math.floor(Math.random() * (10 - 70)) + 70,
+
 
   additionalOffers: [{
     name: `luggage`,
     desc: `Add luggage`,
     price: 10,
     check: Boolean(Math.round(Math.random()))
-  },
-  {
+  }, {
     name: `comfort`,
     desc: `Switch to comfort class`,
     price: 150,
     check: Boolean(Math.round(Math.random()))
-  },
-  {
+  }, {
     name: `meal`,
     desc: `Add meal`,
     price: 2,
     check: Boolean(Math.round(Math.random()))
-  },
-  {
+  }, {
     name: `seats`,
     desc: `Choose seats`,
     price: 9,
@@ -85,4 +88,3 @@ export const createAllMokData = () => ({
 // }
 // // const oneTripEvent = generateEveryMokData();
 // export const myMokData = addFirstTripEvent(createAllMokData());
-

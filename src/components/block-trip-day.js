@@ -1,22 +1,22 @@
-export const createBlockTripDay = ({cityType, routeType, dateStart, dateFinish}) => {
+export const createBlockTripDay = ({cityType, routeType, timeStart, timeEnd, price}) => {
   return `<li class="trip-events__item">
                   <div class="event">
                     <div class="event__type">
-                      <img class="event__type-icon" width="42" height="42" src="img/icons/${(routeType == `Bus`) ? `bus` : (routeType == `Train`) ? `train` : (routeType == `Taxi`) ? `Taxi` : (routeType == `Ship`) ? `ship` : (routeType == `Transport`) ? `transport` : (routeType == `Drive`) ? `drive` : (routeType == `Flight`) ? `flight` : ``}.png" alt="Event type icon">
+                      <img class="event__type-icon" width="42" height="42" src="img/icons/${(routeType === `Bus`) ? `bus` : (routeType === `Train`) ? `train` : (routeType === `Taxi`) ? `Taxi` : (routeType === `Ship`) ? `ship` : (routeType === `Transport`) ? `transport` : (routeType === `Drive`) ? `drive` : (routeType === `Flight`) ? `flight` : ``}.png" alt="Event type icon">
                     </div>
                     <h3 class="event__title">${routeType} to ${cityType}</h3>
 
                     <div class="event__schedule">
                       <p class="event__time">
-                        <time class="event__start-time" datetime="2019-03-18T10:30">${new Date(dateStart).toLocaleDateString()}</time>
+                        <time class="event__start-time" datetime="2019-03-18T10:30">${timeStart}</time>
                         —
-                        <time class="event__end-time" datetime="2019-03-18T11:00">${new Date(dateFinish).toLocaleDateString()}</time>
+                        <time class="event__end-time" datetime="2019-03-18T11:00">${timeEnd}</time>
                       </p>
                       <p class="event__duration">1H 30M</p>
                     </div>
 
                     <p class="event__price">
-                      €&nbsp;<span class="event__price-value">20</span>
+                      €&nbsp;<span class="event__price-value">${price}</span>
                     </p>
 
                     <h4 class="visually-hidden">Offers:</h4>
@@ -24,7 +24,7 @@ export const createBlockTripDay = ({cityType, routeType, dateStart, dateFinish})
                       <li class="event__offer">
                         <span class="event__offer-title">Order Uber</span>
                         +
-                        €&nbsp;<span class="event__offer-price">20</span>
+                        €&nbsp;<span class="event__offer-price">${price}</span>
                        </li>
                     </ul>
 
