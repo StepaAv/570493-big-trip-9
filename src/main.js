@@ -76,7 +76,9 @@ const mainBlockInsertTripDays = document.querySelector(`.trip-events__item`);
 
 const pushDataToEventsArrayOnce = () => {
   // sohraniajem pervyj event, s uslovijem jesli masiv pustoj, jesli net, to sohraniat budet funkcija newEvent
-  if (allEventsArray && allEventsArray.length) {} else {
+  if (allEventsArray && allEventsArray.length) {
+    return;
+  } else {
     allEventsArray.push(eventHeaderData);
   }
 
@@ -99,6 +101,7 @@ const renderDaysSortBlocks = () => {
 const ifContainsSortBlock = () => {
   const eventSortBlock = document.querySelector(`.trip-events__trip-sort`);
   if (document.contains(eventSortBlock)) {
+    return;
   } else {
     renderDaysSortBlocks();
   }
@@ -129,8 +132,8 @@ const savingEventsToArr = () => {
   oneEvent.shift();
 };
 
-let abcd;
-// let arrowUpBtn;
+let formEditBlock;
+
 const makingSaveEvent = () => {
   pushDataToEventsArrayOnce();
   removingEventHeader();
@@ -141,23 +144,22 @@ const makingSaveEvent = () => {
   getTotalPrice();
 
   function renderSettingBlock(e) {
-    newEventBtnDisable();
     let counter = arrowDownBtn.indexOf(e.target);
     const reversedEventsArr = [...allEventsArray];
     reversedEventsArr.reverse();
-    abcd = document.querySelector(`.trip-events__item > form.event--edit`);
-    if (document.contains(abcd)) {
-      abcd.remove();
+    console.log(formEditBlock);
+    if (document.contains(formEditBlock)) {
+      formEditBlock.remove();
       oneEvent.map((segment) => segment.style.display = `flex`);
     }
     oneEvent[counter].style.display = `none`;
     renderBlocks(oneEventContainer[counter], createEditTripEvent(reversedEventsArr[counter]), `afterbegin`);
+    formEditBlock = document.querySelector(`.trip-events__item > form.event--edit`);
     const arrowUpBtn = document.querySelector(`.event--edit > .event__header > .event__rollup-btn`);
 
     function removeModal() {
       this.parentNode.parentNode.remove();
       oneEvent.map((segment) => segment.style.display = `flex`);
-      newEventBtnEnable();
     }
 
     arrowUpBtn.addEventListener(`click`, removeModal);
@@ -169,6 +171,11 @@ const makingSaveEvent = () => {
 saveBtn.addEventListener(`click`, makingSaveEvent);
 
 const makingNewEvent = () => {
+  console.log(formEditBlock);
+  if (document.contains(formEditBlock)) {
+    formEditBlock.remove();
+    oneEvent.map((segment) => segment.style.display = `flex`);
+  }
   // schetchik po kliku, ukazyvajet na element v masive s mokami
   eventNumber += 1;
   // dizablim knopku new event
@@ -189,8 +196,12 @@ const getTotalPrice = () => {
   let totalPrice = 0;
   for (let value of allEventsArray) {
     totalPrice += value.price;
+    for (let offers of value.additionalOffers) {
+      if (offers.check === true) {
+        totalPrice += offers.price;
+      }
+    }
+
   }
   renderBlocks(totalSummBlock, totalPrice, `beforeend`);
 };
-
-

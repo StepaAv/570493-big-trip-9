@@ -61,22 +61,22 @@ export const createAllMokData = () => ({
   additionalOffers: [{
     name: `luggage`,
     desc: `Add luggage`,
-    price: 10,
+    price: 30,
     check: Boolean(Math.round(Math.random()))
   }, {
     name: `comfort`,
     desc: `Switch to comfort class`,
-    price: 150,
+    price: 100,
     check: Boolean(Math.round(Math.random()))
   }, {
     name: `meal`,
     desc: `Add meal`,
-    price: 2,
+    price: 15,
     check: Boolean(Math.round(Math.random()))
   }, {
     name: `seats`,
     desc: `Choose seats`,
-    price: 9,
+    price: 5,
     check: Boolean(Math.round(Math.random()))
   }],
 });
